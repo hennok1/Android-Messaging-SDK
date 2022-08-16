@@ -104,15 +104,18 @@ class MonitoringActivity : AppCompatActivity() {
                             // For demo we display the first engagement only
                             currentCampaignId = engagementList[0].campaignId
 
-                            if (environment == "DEV")
+                            if (environment == "DEV") {
                                 currentEngagementId = "3797821938"
-
-                            if (environment == "DEV-FR")
+                            }
+                            else if (environment == "DEV-FR") {
                                 currentEngagementId = "3883520038"
-
-                            else
+                            }
+                            else if (environment == "QA-FR") {
+                                currentEngagementId = "3883520038"
+                            }
+                            else {
                                 currentEngagementId = "3862438538"
-
+                            }
                             currentEngagementContextId = engagementList[0].contextId
                             currentSessionId = lpEngagementResponse.sessionId
                             currentVisitorId = lpEngagementResponse.visitorId

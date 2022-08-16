@@ -25,6 +25,7 @@
         <item>DEV</item>
         <item>QA</item>
         <item>DEV-FR</item>
+        <item>QA-FR</item>
     </string-array>
 
     <!-- <string name="lp_date_time_format">mm/dd/yyyy HH:mm</string>-->
