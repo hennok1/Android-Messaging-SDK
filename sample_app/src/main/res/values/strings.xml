@@ -22,8 +22,9 @@
     </string-array>
 
     <string-array name="environments">
-        <item>Dev</item>
+        <item>DEV</item>
         <item>QA</item>
+        <item>DEV-FR</item>
     </string-array>
 
     <!-- <string name="lp_date_time_format">mm/dd/yyyy HH:mm</string>-->

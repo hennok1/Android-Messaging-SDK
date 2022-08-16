@@ -1,5 +1,6 @@
 package com.liveperson.sample.app
 
+import android.R.attr.data
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -19,6 +20,7 @@ import com.liveperson.sample.app.utils.SampleAppStorage
 import kotlinx.android.synthetic.main.activity_monitoring.*
 import org.json.JSONArray
 import org.json.JSONException
+
 
 class MonitoringActivity : AppCompatActivity() {
 
@@ -86,7 +88,10 @@ class MonitoringActivity : AppCompatActivity() {
 
                 SampleAppStorage.getInstance(this@MonitoringActivity).consumerId = consumerIdFromUI
 
+
                 val identity = LPMonitoringIdentity(consumerIdFromUI)
+
+
 
                 LivepersonMonitoring.getEngagement(this@MonitoringActivity, arrayListOf(identity), buildSde(false), object : EngagementCallback {
                     override fun onSuccess(lpEngagementResponse: LPEngagementResponse) {
@@ -99,8 +104,12 @@ class MonitoringActivity : AppCompatActivity() {
                             // For demo we display the first engagement only
                             currentCampaignId = engagementList[0].campaignId
 
-                            if (environment == "Dev")
+                            if (environment == "DEV")
                                 currentEngagementId = "3797821938"
+
+                            if (environment == "DEV-FR")
+                                currentEngagementId = "3883520038"
+
                             else
                                 currentEngagementId = "3862438538"
 
@@ -122,7 +131,7 @@ class MonitoringActivity : AppCompatActivity() {
 
                 })
             } catch (e: JSONException) { // If there is a problem with the EnrtyPoint or EngagementAttr data
-                updateResult("Data incompatible")
+                updateResult(e.toString())
                 hideProgressBar()
             }
         }
@@ -220,7 +229,8 @@ class MonitoringActivity : AppCompatActivity() {
      */
     private fun buildSde(withPageId : Boolean) : MonitoringParams {
 
-        var entryPoints : JSONArray? = null
+        //var entryPoints : JSONArray? = null
+        var entryPoints = JSONArray("['sec://devcct']")
         var engagementAttributes : JSONArray? = null
 
         if (!TextUtils.isEmpty(entryPoinstsEditText?.text.toString())) {
